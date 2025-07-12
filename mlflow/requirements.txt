@@ -1,0 +1,9 @@
+python-dotenv
+keras
+numpy
+pandas
+hyperopt
+scikit-learn
+tensorflow
+mlflow
+pyenv

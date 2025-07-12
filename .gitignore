@@ -1,2 +1,5 @@
 .env
 .venv
+*.db
+mlflow/artifacts*
+AutoGen/venv_autgen

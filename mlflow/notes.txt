@@ -1,0 +1,237 @@
+To run model locally in powershell:
+==================================
+
+$env:MLFLOW_TRACKING_URI = "http://127.0.0.1:8080/"
+mlflow models serve -m "models:/wine-quality-Regression/1" --port 5002 --env-manager local
+
+
+model inferance using REST API on powershell:
+===============================
+
+Invoke-WebRequest -Uri http://localhost:5002/invocations -Method POST -Body '{"dataframe_split": {"columns": ["fixed acidity","volatile acidity","citric acid","residual sugar","chlorides","free sulfur dioxide","total sulfur dioxide","density","pH","sulphates","alcohol"],"data": [[7,0.27,0.36,20.7,0.045,45,170,1.001,3,0.45,8.8]]}}' -Headers @{"Content-Type"="application/json"}
+
+
+
+docker container for the model:
+===============================
+
+mlflow models build-docker --model-uri "models:/wine-quality/1" --name "qs_mlops"
+
+Model training output:
+=======================
+Epoch 1/3                                            
+
+ 1/46 ━━━━━━━━━━━━━━━━━━━━ 15s 349ms/step - loss: 34.7590 - root_mean_squared_error: 5.8957
+39/46 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - loss: 14.1585 - root_mean_squared_error: 3.6422   
+46/46 ━━━━━━━━━━━━━━━━━━━━ 1s 6ms/step - loss: 12.8089 - root_mean_squared_error: 3.4470 - val_loss: 1.8742 - val_root_mean_squared_error: 1.3690
+
+Epoch 2/3                                            
+
+ 1/46 ━━━━━━━━━━━━━━━━━━━━ 1s 33ms/step - loss: 1.3544 - root_mean_squared_error: 1.1638
+46/46 ━━━━━━━━━━━━━━━━━━━━ 0s 3ms/step - loss: 1.5365 - root_mean_squared_error: 1.2394 - val_loss: 1.3911 - val_root_mean_squared_error: 1.1795
+
+Epoch 3/3                                            
+
+ 1/46 ━━━━━━━━━━━━━━━━━━━━ 1s 33ms/step - loss: 1.2521 - root_mean_squared_error: 1.1190
+43/46 ━━━━━━━━━━━━━━━━━━━━ 0s 1ms/step - loss: 1.1919 - root_mean_squared_error: 1.0916 
+46/46 ━━━━━━━━━━━━━━━━━━━━ 0s 3ms/step - loss: 1.1897 - root_mean_squared_error: 1.0906 - val_loss: 1.1439 - val_root_mean_squared_error: 1.0695
+
+ 1/12 ━━━━━━━━━━━━━━━━━━━━ 0s 20ms/step - loss: 1.0233 - root_mean_squared_error: 1.0116
+12/12 ━━━━━━━━━━━━━━━━━━━━ 0s 4ms/step - loss: 1.1729 - root_mean_squared_error: 1.0826 
+
+🏃 View run able-mole-209 at: http://127.0.0.1:8080/#/experiments/471460570525031860/runs/7b8d0740b0504040a7d63dbc787930aa
+
+🧪 View experiment at: http://127.0.0.1:8080/#/experiments/471460570525031860
+
+Epoch 1/3                                                                      
+
+ 1/46 ━━━━━━━━━━━━━━━━━━━━ 25s 569ms/step - loss: 27.2620 - root_mean_squared_error: 5.2213
+33/46 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - loss: 8.5449 - root_mean_squared_error: 2.8017    
+46/46 ━━━━━━━━━━━━━━━━━━━━ 1s 6ms/step - loss: 6.9991 - root_mean_squared_error: 2.5125 - val_loss: 0.8534 - val_root_mean_squared_error: 0.9238
+
+Epoch 2/3                                                                      
+
+ 1/46 ━━━━━━━━━━━━━━━━━━━━ 1s 37ms/step - loss: 0.7039 - root_mean_squared_error: 0.8390
+40/46 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - loss: 0.7239 - root_mean_squared_error: 0.8507 
+46/46 ━━━━━━━━━━━━━━━━━━━━ 0s 3ms/step - loss: 0.7192 - root_mean_squared_error: 0.8479 - val_loss: 0.6038 - val_root_mean_squared_error: 0.7771
+
+Epoch 3/3                                                                      
+
+ 1/46 ━━━━━━━━━━━━━━━━━━━━ 1s 36ms/step - loss: 0.8731 - root_mean_squared_error: 0.9344
+45/46 ━━━━━━━━━━━━━━━━━━━━ 0s 1ms/step - loss: 0.5861 - root_mean_squared_error: 0.7650 
+46/46 ━━━━━━━━━━━━━━━━━━━━ 0s 3ms/step - loss: 0.5853 - root_mean_squared_error: 0.7644 - val_loss: 0.5896 - val_root_mean_squared_error: 0.7678
+
+ 1/12 ━━━━━━━━━━━━━━━━━━━━ 0s 16ms/step - loss: 0.5179 - root_mean_squared_error: 0.7197
+12/12 ━━━━━━━━━━━━━━━━━━━━ 0s 3ms/step - loss: 0.5656 - root_mean_squared_error: 0.7517 
+
+🏃 View run orderly-moth-393 at: http://127.0.0.1:8080/#/experiments/471460570525031860/runs/ca94eb9448dc410aa6d69ce58954b80e
+
+🧪 View experiment at: http://127.0.0.1:8080/#/experiments/471460570525031860  
+
+Epoch 1/3                                                                      
+
+ 1/46 ━━━━━━━━━━━━━━━━━━━━ 14s 332ms/step - loss: 36.5403 - root_mean_squared_error: 6.0449
+40/46 ━━━━━━━━━━━━━━━━━━━━ 0s 1ms/step - loss: 31.8193 - root_mean_squared_error: 5.6374   
+46/46 ━━━━━━━━━━━━━━━━━━━━ 1s 5ms/step - loss: 31.2372 - root_mean_squared_error: 5.5846 - val_loss: 20.7680 - val_root_mean_squared_error: 4.5572
+
+Epoch 2/3                                                                      
+
+ 1/46 ━━━━━━━━━━━━━━━━━━━━ 1s 33ms/step - loss: 21.2566 - root_mean_squared_error: 4.6105
+42/46 ━━━━━━━━━━━━━━━━━━━━ 0s 1ms/step - loss: 18.3982 - root_mean_squared_error: 4.2861 
+46/46 ━━━━━━━━━━━━━━━━━━━━ 0s 3ms/step - loss: 18.1468 - root_mean_squared_error: 4.2561 - val_loss: 12.0043 - val_root_mean_squared_error: 3.4647
+
+Epoch 3/3                                                                      
+
+ 1/46 ━━━━━━━━━━━━━━━━━━━━ 1s 34ms/step - loss: 11.3052 - root_mean_squared_error: 3.3623
+31/46 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - loss: 10.8030 - root_mean_squared_error: 3.2864 
+46/46 ━━━━━━━━━━━━━━━━━━━━ 0s 3ms/step - loss: 10.3942 - root_mean_squared_error: 3.2225 - val_loss: 7.1908 - val_root_mean_squared_error: 2.6816
+
+ 1/12 ━━━━━━━━━━━━━━━━━━━━ 0s 18ms/step - loss: 7.2246 - root_mean_squared_error: 2.6879
+12/12 ━━━━━━━━━━━━━━━━━━━━ 0s 3ms/step - loss: 7.1711 - root_mean_squared_error: 2.6778 
+
+🏃 View run redolent-cow-796 at: http://127.0.0.1:8080/#/experiments/471460570525031860/runs/ff2b9ae9665d4a14babefc409c3c7d9d
+
+🧪 View experiment at: http://127.0.0.1:8080/#/experiments/471460570525031860  
+
+Epoch 1/3                                                                      
+
+ 1/46 ━━━━━━━━━━━━━━━━━━━━ 15s 346ms/step - loss: 40.8930 - root_mean_squared_error: 6.3948
+37/46 ━━━━━━━━━━━━━━━━━━━━ 0s 1ms/step - loss: 15.3518 - root_mean_squared_error: 3.7781   
+46/46 ━━━━━━━━━━━━━━━━━━━━ 1s 5ms/step - loss: 13.4574 - root_mean_squared_error: 3.5144 - val_loss: 1.2840 - val_root_mean_squared_error: 1.1331
+
+Epoch 2/3                                                                      
+
+ 1/46 ━━━━━━━━━━━━━━━━━━━━ 3s 77ms/step - loss: 0.9545 - root_mean_squared_error: 0.9770
+39/46 ━━━━━━━━━━━━━━━━━━━━ 0s 1ms/step - loss: 1.0505 - root_mean_squared_error: 1.0248 
+46/46 ━━━━━━━━━━━━━━━━━━━━ 0s 3ms/step - loss: 1.0378 - root_mean_squared_error: 1.0185 - val_loss: 0.8582 - val_root_mean_squared_error: 0.9264
+
+Epoch 3/3                                                                      
+
+ 1/46 ━━━━━━━━━━━━━━━━━━━━ 1s 39ms/step - loss: 0.6837 - root_mean_squared_error: 0.8268
+43/46 ━━━━━━━━━━━━━━━━━━━━ 0s 1ms/step - loss: 0.7522 - root_mean_squared_error: 0.8670 
+46/46 ━━━━━━━━━━━━━━━━━━━━ 0s 3ms/step - loss: 0.7498 - root_mean_squared_error: 0.8656 - val_loss: 0.6848 - val_root_mean_squared_error: 0.8275
+
+ 1/12 ━━━━━━━━━━━━━━━━━━━━ 0s 20ms/step - loss: 0.6048 - root_mean_squared_error: 0.7777
+12/12 ━━━━━━━━━━━━━━━━━━━━ 0s 3ms/step - loss: 0.6743 - root_mean_squared_error: 0.8207 
+
+🏃 View run puzzled-colt-494 at: http://127.0.0.1:8080/#/experiments/471460570525031860/runs/99b42f53584841f8be38be1222a41968
+
+🧪 View experiment at: http://127.0.0.1:8080/#/experiments/471460570525031860  
+
+Epoch 1/3                                                                      
+
+ 1/46 ━━━━━━━━━━━━━━━━━━━━ 41s 933ms/step - loss: 32.6396 - root_mean_squared_error: 5.7131
+20/46 ━━━━━━━━━━━━━━━━━━━━ 0s 3ms/step - loss: 14.8118 - root_mean_squared_error: 3.7275   
+46/46 ━━━━━━━━━━━━━━━━━━━━ 0s 3ms/step - loss: 9.2795 - root_mean_squared_error: 2.8829 
+46/46 ━━━━━━━━━━━━━━━━━━━━ 2s 13ms/step - loss: 9.1654 - root_mean_squared_error: 2.8637 - val_loss: 1.2762 - val_root_mean_squared_error: 1.1297
+
+Epoch 2/3                                                                      
+
+ 1/46 ━━━━━━━━━━━━━━━━━━━━ 2s 66ms/step - loss: 1.3145 - root_mean_squared_error: 1.1465
+22/46 ━━━━━━━━━━━━━━━━━━━━ 0s 3ms/step - loss: 1.1433 - root_mean_squared_error: 1.0690 
+44/46 ━━━━━━━━━━━━━━━━━━━━ 0s 3ms/step - loss: 1.0989 - root_mean_squared_error: 1.0479
+46/46 ━━━━━━━━━━━━━━━━━━━━ 0s 6ms/step - loss: 1.0927 - root_mean_squared_error: 1.0449 - val_loss: 0.8699 - val_root_mean_squared_error: 0.9327
+
+Epoch 3/3                                                                      
+
+ 1/46 ━━━━━━━━━━━━━━━━━━━━ 3s 69ms/step - loss: 0.9261 - root_mean_squared_error: 0.9624
+12/46 ━━━━━━━━━━━━━━━━━━━━ 0s 5ms/step - loss: 0.7893 - root_mean_squared_error: 0.8876 
+25/46 ━━━━━━━━━━━━━━━━━━━━ 0s 5ms/step - loss: 0.7922 - root_mean_squared_error: 0.8897
+36/46 ━━━━━━━━━━━━━━━━━━━━ 0s 5ms/step - loss: 0.7889 - root_mean_squared_error: 0.8879
+46/46 ━━━━━━━━━━━━━━━━━━━━ 0s 8ms/step - loss: 0.7845 - root_mean_squared_error: 0.8855 - val_loss: 0.7009 - val_root_mean_squared_error: 0.8372
+
+ 1/12 ━━━━━━━━━━━━━━━━━━━━ 0s 34ms/step - loss: 0.6169 - root_mean_squared_error: 0.7854
+12/12 ━━━━━━━━━━━━━━━━━━━━ 0s 5ms/step - loss: 0.6872 - root_mean_squared_error: 0.8285 
+
+🏃 View run righteous-cub-737 at: http://127.0.0.1:8080/#/experiments/471460570525031860/runs/93e772c46d8f46dfa7cbc9684a6dd861
+
+🧪 View experiment at: http://127.0.0.1:8080/#/experiments/471460570525031860  
+
+Epoch 1/3                                                                      
+
+ 1/46 ━━━━━━━━━━━━━━━━━━━━ 34s 766ms/step - loss: 42.7855 - root_mean_squared_error: 6.5411
+16/46 ━━━━━━━━━━━━━━━━━━━━ 0s 3ms/step - loss: 40.5309 - root_mean_squared_error: 6.3647   
+41/46 ━━━━━━━━━━━━━━━━━━━━ 0s 3ms/step - loss: 37.1522 - root_mean_squared_error: 6.0899
+46/46 ━━━━━━━━━━━━━━━━━━━━ 1s 11ms/step - loss: 36.5033 - root_mean_squared_error: 6.0354 - val_loss: 23.5607 - val_root_mean_squared_error: 4.8539
+
+Epoch 2/3                                                                      
+
+ 1/46 ━━━━━━━━━━━━━━━━━━━━ 2s 64ms/step - loss: 21.1983 - root_mean_squared_error: 4.6042
+29/46 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - loss: 21.6099 - root_mean_squared_error: 4.6470 
+46/46 ━━━━━━━━━━━━━━━━━━━━ 0s 6ms/step - loss: 20.4293 - root_mean_squared_error: 4.5156 - val_loss: 12.9044 - val_root_mean_squared_error: 3.5923
+
+Epoch 3/3                                                                      
+
+ 1/46 ━━━━━━━━━━━━━━━━━━━━ 2s 64ms/step - loss: 14.5847 - root_mean_squared_error: 3.8190
+28/46 ━━━━━━━━━━━━━━━━━━━━ 0s 2ms/step - loss: 12.3099 - root_mean_squared_error: 3.5053 
+46/46 ━━━━━━━━━━━━━━━━━━━━ 0s 5ms/step - loss: 11.4826 - root_mean_squared_error: 3.3832 - val_loss: 7.2151 - val_root_mean_squared_error: 2.6861
+
+ 1/12 ━━━━━━━━━━━━━━━━━━━━ 0s 26ms/step - loss: 7.1924 - root_mean_squared_error: 2.6819
+12/12 ━━━━━━━━━━━━━━━━━━━━ 0s 6ms/step - loss: 7.1519 - root_mean_squared_error: 2.6742 
+
+🏃 View run rambunctious-pig-750 at: http://127.0.0.1:8080/#/experiments/471460570525031860/runs/216af73c625f43468fada10edc73fdbb
+
+🧪 View experiment at: http://127.0.0.1:8080/#/experiments/471460570525031860  
+
+Epoch 1/3                                                                      
+
+ 1/46 ━━━━━━━━━━━━━━━━━━━━ 33s 750ms/step - loss: 33.0436 - root_mean_squared_error: 5.7484
+18/46 ━━━━━━━━━━━━━━━━━━━━ 0s 4ms/step - loss: 22.8947 - root_mean_squared_error: 4.7580   
+45/46 ━━━━━━━━━━━━━━━━━━━━ 0s 3ms/step - loss: 16.1217 - root_mean_squared_error: 3.9391
+46/46 ━━━━━━━━━━━━━━━━━━━━ 1s 12ms/step - loss: 15.8037 - root_mean_squared_error: 3.8966 - val_loss: 2.6027 - val_root_mean_squared_error: 1.6133
+
+Epoch 2/3                                                                      
+
+ 1/46 ━━━━━━━━━━━━━━━━━━━━ 4s 102ms/step - loss: 2.8095 - root_mean_squared_error: 1.6762
+19/46 ━━━━━━━━━━━━━━━━━━━━ 0s 3ms/step - loss: 2.4294 - root_mean_squared_error: 1.5581  
+39/46 ━━━━━━━━━━━━━━━━━━━━ 0s 3ms/step - loss: 2.4241 - root_mean_squared_error: 1.5566
+46/46 ━━━━━━━━━━━━━━━━━━━━ 0s 6ms/step - loss: 2.3920 - root_mean_squared_error: 1.5461 - val_loss: 1.9288 - val_root_mean_squared_error: 1.3888
+
+Epoch 3/3                                                                      
+
+ 1/46 ━━━━━━━━━━━━━━━━━━━━ 1s 41ms/step - loss: 1.5067 - root_mean_squared_error: 1.2275
+20/46 ━━━━━━━━━━━━━━━━━━━━ 0s 3ms/step - loss: 1.7393 - root_mean_squared_error: 1.3186 
+40/46 ━━━━━━━━━━━━━━━━━━━━ 0s 3ms/step - loss: 1.7280 - root_mean_squared_error: 1.3144
+46/46 ━━━━━━━━━━━━━━━━━━━━ 0s 6ms/step - loss: 1.7252 - root_mean_squared_error: 1.3133 - val_loss: 1.5907 - val_root_mean_squared_error: 1.2612
+
+ 1/12 ━━━━━━━━━━━━━━━━━━━━ 0s 34ms/step - loss: 1.3919 - root_mean_squared_error: 1.1798
+12/12 ━━━━━━━━━━━━━━━━━━━━ 0s 6ms/step - loss: 1.6206 - root_mean_squared_error: 1.2723 
+
+🏃 View run flawless-robin-532 at: http://127.0.0.1:8080/#/experiments/471460570525031860/runs/d77bb203606a4ac89c1ca5773de799ff
+
+🧪 View experiment at: http://127.0.0.1:8080/#/experiments/471460570525031860  
+
+Epoch 1/3                                                                      
+
+ 1/46 ━━━━━━━━━━━━━━━━━━━━ 33s 746ms/step - loss: 34.3957 - root_mean_squared_error: 5.8648
+12/46 ━━━━━━━━━━━━━━━━━━━━ 0s 5ms/step - loss: 32.8555 - root_mean_squared_error: 5.7318   
+27/46 ━━━━━━━━━━━━━━━━━━━━ 0s 4ms/step - loss: 32.5974 - root_mean_squared_error: 5.7093
+40/46 ━━━━━━━━━━━━━━━━━━━━ 0s 4ms/step - loss: 32.3822 - root_mean_squared_error: 5.6904
+46/46 ━━━━━━━━━━━━━━━━━━━━ 1s 14ms/step - loss: 32.2718 - root_mean_squared_error: 5.6807 - val_loss: 30.6066 - val_root_mean_squared_error: 5.5323
+
+Epoch 2/3                                                                      
+
+ 1/46 ━━━━━━━━━━━━━━━━━━━━ 29s 666ms/step - loss: 29.9697 - root_mean_squared_error: 5.4745
+ 8/46 ━━━━━━━━━━━━━━━━━━━━ 0s 9ms/step - loss: 30.4542 - root_mean_squared_error: 5.5185   
+24/46 ━━━━━━━━━━━━━━━━━━━━ 0s 6ms/step - loss: 30.2598 - root_mean_squared_error: 5.5009
+46/46 ━━━━━━━━━━━━━━━━━━━━ 1s 7ms/step - loss: 29.9915 - root_mean_squared_error: 5.4764 - val_loss: 28.6140 - val_root_mean_squared_error: 5.3492
+
+Epoch 3/3                                                                      
+
+ 1/46 ━━━━━━━━━━━━━━━━━━━━ 3s 69ms/step - loss: 28.9392 - root_mean_squared_error: 5.3795
+13/46 ━━━━━━━━━━━━━━━━━━━━ 0s 5ms/step - loss: 28.4919 - root_mean_squared_error: 5.3377 
+28/46 ━━━━━━━━━━━━━━━━━━━━ 0s 5ms/step - loss: 28.3534 - root_mean_squared_error: 5.3247
+46/46 ━━━━━━━━━━━━━━━━━━━━ 0s 7ms/step - loss: 28.1040 - root_mean_squared_error: 5.3012 - val_loss: 26.7490 - val_root_mean_squared_error: 5.1719
+
+ 1/12 ━━━━━━━━━━━━━━━━━━━━ 0s 32ms/step - loss: 27.0307 - root_mean_squared_error: 5.1991
+12/12 ━━━━━━━━━━━━━━━━━━━━ 0s 7ms/step - loss: 26.5106 - root_mean_squared_error: 5.1488 
+
+🏃 View run placid-duck-554 at: http://127.0.0.1:8080/#/experiments/471460570525031860/runs/d8702ac44a0f40398883e099cf190d7f
+
+🧪 View experiment at: http://127.0.0.1:8080/#/experiments/471460570525031860  
+
+100%|██████████| 8/8 [01:40<00:00, 12.56s/trial, best loss: 0.7678365111351013]
+Best parameters: {'lr': np.float64(0.016441407541241192), 'momentum': np.float64(0.764817482899869)}
+Best eval rmse: 0.7678365111351013
+🏃 View run judicious-ram-444 at: http://127.0.0.1:8080/#/experiments/471460570525031860/runs/d67d1b5c53ed475e9a96cc817b5ee6f6
+🧪 View experiment at: http://127.0.0.1:8080/#/experiments/471460570525031860
