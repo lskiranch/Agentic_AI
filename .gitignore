@@ -3,3 +3,4 @@
 *.db
 mlflow/artifacts*
 AutoGen/venv_autgen
+mlflow/artifacts
